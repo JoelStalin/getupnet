@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_captive_user_tree" model="ir.ui.view">
+        <field name="name">isp.captive.user.tree</field>
+        <field name="model">isp.captive.user</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="username"/>
+                <field name="profile"/>
+                <field name="state"/>
+                <field name="router_id"/>
+                <field name="expires_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_captive_user_form" model="ir.ui.view">
+        <field name="name">isp.captive.user.form</field>
+        <field name="model">isp.captive.user</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_enable" type="object" string="Enable" states="disabled"/>
+                    <button name="action_disable" type="object" string="Disable" states="active"/>
+                    <field name="state" widget="statusbar" statusbar_visible="active,disabled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="username"/>
+                        <field name="password" groups="isp_core.group_isp_admin,isp_core.group_isp_noc,isp_core.group_isp_support"/>
+                        <field name="profile"/>
+                    </group>
+                    <group>
+                        <field name="router_id"/>
+                        <field name="sector_id" readonly="1"/>
+                        <field name="expires_at"/>
+                        <field name="last_login_at"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_captive_user" model="ir.actions.act_window">
+        <field name="name">Captive Users</field>
+        <field name="res_model">isp.captive.user</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_captive_root" name="Captive Portal" parent="isp_core.menu_isp_root" sequence="25"/>
+    <menuitem id="menu_isp_captive_users" name="Vouchers" parent="menu_isp_captive_root" action="action_isp_captive_user" sequence="10"/>
+</odoo>

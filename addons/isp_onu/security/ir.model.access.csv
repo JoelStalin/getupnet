@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isp_onu_admin,isp.onu admin,model_isp_onu,isp_core.group_isp_admin,1,1,1,1
+access_isp_onu_noc,isp.onu noc,model_isp_onu,isp_core.group_isp_noc,1,1,1,0
+access_isp_onu_field,isp.onu field,model_isp_onu,isp_core.group_isp_field_tech,1,1,1,0
+access_isp_onu_support,isp.onu support,model_isp_onu,isp_core.group_isp_support,1,0,0,0
+
+access_isp_onu_assign_admin,isp.onu.assignment admin,model_isp_onu_assignment,isp_core.group_isp_admin,1,1,1,1
+access_isp_onu_assign_noc,isp.onu.assignment noc,model_isp_onu_assignment,isp_core.group_isp_noc,1,1,1,0
+access_isp_onu_assign_field,isp.onu.assignment field,model_isp_onu_assignment,isp_core.group_isp_field_tech,1,1,1,0
+access_isp_onu_assign_support,isp.onu.assignment support,model_isp_onu_assignment,isp_core.group_isp_support,1,0,0,0

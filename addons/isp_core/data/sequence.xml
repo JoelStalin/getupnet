@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_isp_job" model="ir.sequence">
+        <field name="name">ISP Job</field>
+        <field name="code">isp.provisioning.job</field>
+        <field name="prefix">JOB-</field>
+        <field name="padding">6</field>
+    </record>
+    <record id="seq_isp_subscription" model="ir.sequence">
+        <field name="name">ISP Subscription</field>
+        <field name="code">isp.subscription</field>
+        <field name="prefix">SUB-</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

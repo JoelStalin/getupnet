@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_isp_sector_by_user" model="ir.rule">
+        <field name="name">ISP Sectors by user</field>
+        <field name="model_id" ref="model_isp_sector"/>
+        <field name="domain_force">[('id', 'in', user.isp_sector_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('isp_core.group_isp_noc')), (4, ref('isp_core.group_isp_support')), (4, ref('isp_core.group_isp_field_tech')), (4, ref('isp_core.group_isp_billing'))]"/>
+    </record>
+
+    <record id="rule_isp_network_site_by_sector" model="ir.rule">
+        <field name="name">ISP Network Sites by sector</field>
+        <field name="model_id" ref="model_isp_network_site"/>
+        <field name="domain_force">[('sector_id', 'in', user.isp_sector_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('isp_core.group_isp_noc')), (4, ref('isp_core.group_isp_support')), (4, ref('isp_core.group_isp_field_tech')), (4, ref('isp_core.group_isp_billing'))]"/>
+    </record>
+
+    <record id="rule_isp_device_by_sector" model="ir.rule">
+        <field name="name">ISP Devices by sector</field>
+        <field name="model_id" ref="model_isp_device"/>
+        <field name="domain_force">[('sector_id', 'in', user.isp_sector_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('isp_core.group_isp_noc')), (4, ref('isp_core.group_isp_support')), (4, ref('isp_core.group_isp_field_tech')), (4, ref('isp_core.group_isp_billing'))]"/>
+    </record>
+
+    <record id="rule_isp_subscription_by_sector" model="ir.rule">
+        <field name="name">ISP Subscriptions by sector</field>
+        <field name="model_id" ref="model_isp_subscription"/>
+        <field name="domain_force">[('sector_id', 'in', user.isp_sector_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('isp_core.group_isp_noc')), (4, ref('isp_core.group_isp_support')), (4, ref('isp_core.group_isp_field_tech')), (4, ref('isp_core.group_isp_billing'))]"/>
+    </record>
+
+    <record id="rule_isp_job_by_sector" model="ir.rule">
+        <field name="name">ISP Jobs by sector</field>
+        <field name="model_id" ref="model_isp_provisioning_job"/>
+        <field name="domain_force">['|', ('sector_id', '=', False), ('sector_id', 'in', user.isp_sector_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('isp_core.group_isp_noc')), (4, ref('isp_core.group_isp_support')), (4, ref('isp_core.group_isp_field_tech')), (4, ref('isp_core.group_isp_billing'))]"/>
+    </record>
+</odoo>

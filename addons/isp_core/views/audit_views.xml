@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_audit_tree" model="ir.ui.view">
+        <field name="name">isp.audit.log.tree</field>
+        <field name="model">isp.audit_log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="timestamp"/>
+                <field name="action"/>
+                <field name="record_model"/>
+                <field name="record_name"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_audit_form" model="ir.ui.view">
+        <field name="name">isp.audit.log.form</field>
+        <field name="model">isp.audit_log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="timestamp"/>
+                        <field name="action"/>
+                        <field name="user_id"/>
+                    </group>
+                    <group>
+                        <field name="record_model"/>
+                        <field name="record_id"/>
+                        <field name="record_name"/>
+                    </group>
+                    <group>
+                        <field name="details"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isp_captive_user_admin,isp.captive.user admin,model_isp_captive_user,isp_core.group_isp_admin,1,1,1,1
+access_isp_captive_user_noc,isp.captive.user noc,model_isp_captive_user,isp_core.group_isp_noc,1,1,1,0
+access_isp_captive_user_support,isp.captive.user support,model_isp_captive_user,isp_core.group_isp_support,1,1,1,0
+
+access_isp_captive_wg_admin,isp.captive.walled_garden admin,model_isp_captive_walled_garden,isp_core.group_isp_admin,1,1,1,1
+access_isp_captive_wg_noc,isp.captive.walled_garden noc,model_isp_captive_walled_garden,isp_core.group_isp_noc,1,1,1,0
+access_isp_captive_wg_support,isp.captive.walled_garden support,model_isp_captive_walled_garden,isp_core.group_isp_support,1,0,0,0
+
+access_isp_captive_session_admin,isp.captive.session admin,model_isp_captive_session,isp_core.group_isp_admin,1,0,0,0
+access_isp_captive_session_noc,isp.captive.session noc,model_isp_captive_session,isp_core.group_isp_noc,1,0,0,0
+access_isp_captive_session_support,isp.captive.session support,model_isp_captive_session,isp_core.group_isp_support,1,0,0,0

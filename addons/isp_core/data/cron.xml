@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_isp_provisioning_jobs" model="ir.cron">
+        <field name="name">ISP Provisioning Jobs</field>
+        <field name="model_id" ref="model_isp_provisioning_job"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_run_pending_jobs()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

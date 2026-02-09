@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_captive_wg_tree" model="ir.ui.view">
+        <field name="name">isp.captive.walled.garden.tree</field>
+        <field name="model">isp.captive.walled_garden</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="domain"/>
+                <field name="router_id"/>
+                <field name="sector_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_captive_wg_form" model="ir.ui.view">
+        <field name="name">isp.captive.walled.garden.form</field>
+        <field name="model">isp.captive.walled_garden</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_apply" type="object" string="Apply"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="domain"/>
+                        <field name="router_id"/>
+                        <field name="active"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_captive_wg" model="ir.actions.act_window">
+        <field name="name">Walled Garden</field>
+        <field name="res_model">isp.captive.walled_garden</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_captive_walled_garden" name="Walled Garden" parent="menu_isp_captive_root" action="action_isp_captive_wg" sequence="20"/>
+</odoo>

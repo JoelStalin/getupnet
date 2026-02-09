@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_partner_form_isp" model="ir.ui.view">
+        <field name="name">res.partner.form.isp</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_isp_customer"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="ISP" attrs="{'invisible': [('is_isp_customer', '=', False)]}">
+                    <field name="isp_subscription_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="plan_id"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_service_plan_form_billing" model="ir.ui.view">
+        <field name="name">isp.service.plan.form.billing</field>
+        <field name="model">isp.service_plan</field>
+        <field name="inherit_id" ref="isp_core.view_isp_service_plan_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[field[@name='price']]" position="inside">
+                <field name="tax_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

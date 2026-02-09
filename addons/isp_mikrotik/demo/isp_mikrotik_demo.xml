@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="isp_mikrotik_router_demo" model="isp.mikrotik.router">
+        <field name="device_id" ref="isp_core.isp_device_demo"/>
+        <field name="auth_method">api</field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="isp_captive_user_demo" model="isp.captive.user">
+        <field name="username">demo_voucher</field>
+        <field name="password">demo123</field>
+        <field name="profile">default</field>
+        <field name="state">disabled</field>
+        <field name="router_id" ref="isp_mikrotik.isp_mikrotik_router_demo"/>
+    </record>
+
+    <record id="isp_captive_wg_demo" model="isp.captive.walled_garden">
+        <field name="domain">example.com</field>
+        <field name="router_id" ref="isp_mikrotik.isp_mikrotik_router_demo"/>
+        <field name="active">1</field>
+    </record>
+</odoo>

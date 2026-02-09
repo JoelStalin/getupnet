@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_sector_tree" model="ir.ui.view">
+        <field name="name">isp.sector.tree</field>
+        <field name="model">isp.sector</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="city"/>
+                <field name="zone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_sector_form" model="ir.ui.view">
+        <field name="name">isp.sector.form</field>
+        <field name="model">isp.sector</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="city"/>
+                        <field name="zone"/>
+                        <field name="address"/>
+                    </group>
+                    <group>
+                        <field name="gps_lat"/>
+                        <field name="gps_lng"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

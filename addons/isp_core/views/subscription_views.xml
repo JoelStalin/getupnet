@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_subscription_tree" model="ir.ui.view">
+        <field name="name">isp.subscription.tree</field>
+        <field name="model">isp.subscription</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="plan_id"/>
+                <field name="sector_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_subscription_form" model="ir.ui.view">
+        <field name="name">isp.subscription.form</field>
+        <field name="model">isp.subscription</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" type="object" string="Activate" states="draft"/>
+                    <button name="action_suspend" type="object" string="Suspend" states="active"/>
+                    <button name="action_reconnect" type="object" string="Reconnect" states="suspended"/>
+                    <button name="action_terminate" type="object" string="Terminate" states="draft,active,suspended"/>
+                    <button name="action_change_plan" type="object" string="Change Plan" states="active,suspended"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,suspended,terminated"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="plan_id"/>
+                        <field name="sector_id"/>
+                        <field name="start_date"/>
+                    </group>
+                    <notebook>
+                        <page string="Network">
+                            <group>
+                                <field name="service_ip"/>
+                                <field name="service_mac"/>
+                                <field name="pppoe_username" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                                <field name="pppoe_password" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                        <page string="Jobs">
+                            <field name="job_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="job_type"/>
+                                    <field name="state"/>
+                                    <field name="requested_at"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

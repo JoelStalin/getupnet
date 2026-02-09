@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_captive_session_tree" model="ir.ui.view">
+        <field name="name">isp.captive.session.tree</field>
+        <field name="model">isp.captive.session</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="username"/>
+                <field name="ip_address"/>
+                <field name="mac_address"/>
+                <field name="router_id"/>
+                <field name="sector_id"/>
+                <field name="started_at"/>
+                <field name="uptime"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_captive_session_form" model="ir.ui.view">
+        <field name="name">isp.captive.session.form</field>
+        <field name="model">isp.captive.session</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="username"/>
+                        <field name="router_id"/>
+                        <field name="ip_address"/>
+                        <field name="mac_address"/>
+                    </group>
+                    <group>
+                        <field name="started_at"/>
+                        <field name="uptime"/>
+                        <field name="bytes_in"/>
+                        <field name="bytes_out"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_captive_session" model="ir.actions.act_window">
+        <field name="name">Captive Sessions</field>
+        <field name="res_model">isp.captive.session</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_captive_sessions" name="Sessions" parent="menu_isp_captive_root" action="action_isp_captive_session" sequence="30"/>
+</odoo>

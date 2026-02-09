@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_isp_captive_sync_sessions" model="ir.cron">
+        <field name="name">ISP Captive Sync Sessions</field>
+        <field name="model_id" ref="model_isp_captive_session"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_sync_sessions()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">False</field>
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="isp_sector_demo" model="isp.sector">
+        <field name="name">Central</field>
+        <field name="code">SEC-001</field>
+        <field name="city">Demo City</field>
+        <field name="zone">Zone A</field>
+    </record>
+
+    <record id="isp_plan_demo" model="isp.service_plan">
+        <field name="name">Fiber 50/10</field>
+        <field name="service_type">pppoe</field>
+        <field name="down_mbps">50</field>
+        <field name="up_mbps">10</field>
+        <field name="price">20</field>
+        <field name="mikrotik_profile">basic</field>
+        <field name="suspend_after_days">5</field>
+    </record>
+
+    <record id="isp_partner_demo" model="res.partner">
+        <field name="name">Demo Customer</field>
+        <field name="email">demo@example.com</field>
+        <field name="is_isp_customer">1</field>
+    </record>
+
+    <record id="isp_device_demo" model="isp.device">
+        <field name="name">MT-SEC-001-1</field>
+        <field name="device_type">mikrotik</field>
+        <field name="sector_id" ref="isp_sector_demo"/>
+        <field name="mgmt_ip">192.168.88.1</field>
+        <field name="mgmt_port">8728</field>
+        <field name="status">active</field>
+    </record>
+
+    <record id="isp_subscription_demo" model="isp.subscription">
+        <field name="name">SUB-DEMO-001</field>
+        <field name="partner_id" ref="isp_partner_demo"/>
+        <field name="plan_id" ref="isp_plan_demo"/>
+        <field name="sector_id" ref="isp_sector_demo"/>
+        <field name="state">draft</field>
+        <field name="pppoe_username">demo_user</field>
+        <field name="pppoe_password">demo_pass</field>
+        <field name="service_ip">10.10.10.10</field>
+    </record>
+</odoo>

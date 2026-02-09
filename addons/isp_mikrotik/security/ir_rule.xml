@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_isp_mikrotik_router_by_sector" model="ir.rule">
+        <field name="name">MikroTik Routers by sector</field>
+        <field name="model_id" ref="model_isp_mikrotik_router"/>
+        <field name="domain_force">[('sector_id', 'in', user.isp_sector_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('isp_core.group_isp_noc')), (4, ref('isp_core.group_isp_support')), (4, ref('isp_core.group_isp_field_tech')), (4, ref('isp_core.group_isp_billing'))]"/>
+    </record>
+</odoo>

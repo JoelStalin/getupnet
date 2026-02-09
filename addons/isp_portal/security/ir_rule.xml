@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_isp_subscription_portal" model="ir.rule">
+        <field name="name">ISP Subscriptions: portal own</field>
+        <field name="model_id" ref="isp_core.model_isp_subscription"/>
+        <field name="groups" eval="[(4, ref('isp_portal.group_isp_portal_customer'))]"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,36 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isp_sector_admin,isp.sector admin,model_isp_sector,isp_core.group_isp_admin,1,1,1,1
+access_isp_sector_noc,isp.sector noc,model_isp_sector,isp_core.group_isp_noc,1,1,1,0
+access_isp_sector_support,isp.sector support,model_isp_sector,isp_core.group_isp_support,1,0,0,0
+access_isp_sector_field,isp.sector field,model_isp_sector,isp_core.group_isp_field_tech,1,1,1,0
+access_isp_sector_billing,isp.sector billing,model_isp_sector,isp_core.group_isp_billing,1,0,0,0
+
+access_isp_site_admin,isp.network_site admin,model_isp_network_site,isp_core.group_isp_admin,1,1,1,1
+access_isp_site_noc,isp.network_site noc,model_isp_network_site,isp_core.group_isp_noc,1,1,1,0
+access_isp_site_support,isp.network_site support,model_isp_network_site,isp_core.group_isp_support,1,0,0,0
+access_isp_site_field,isp.network_site field,model_isp_network_site,isp_core.group_isp_field_tech,1,1,1,0
+access_isp_site_billing,isp.network_site billing,model_isp_network_site,isp_core.group_isp_billing,1,0,0,0
+
+access_isp_device_admin,isp.device admin,model_isp_device,isp_core.group_isp_admin,1,1,1,1
+access_isp_device_noc,isp.device noc,model_isp_device,isp_core.group_isp_noc,1,1,1,0
+access_isp_device_support,isp.device support,model_isp_device,isp_core.group_isp_support,1,0,0,0
+access_isp_device_field,isp.device field,model_isp_device,isp_core.group_isp_field_tech,1,0,0,0
+access_isp_device_billing,isp.device billing,model_isp_device,isp_core.group_isp_billing,1,0,0,0
+
+access_isp_plan_admin,isp.service_plan admin,model_isp_service_plan,isp_core.group_isp_admin,1,1,1,1
+access_isp_plan_noc,isp.service_plan noc,model_isp_service_plan,isp_core.group_isp_noc,1,1,1,0
+access_isp_plan_support,isp.service_plan support,model_isp_service_plan,isp_core.group_isp_support,1,0,0,0
+access_isp_plan_billing,isp.service_plan billing,model_isp_service_plan,isp_core.group_isp_billing,1,1,1,0
+
+access_isp_sub_admin,isp.subscription admin,model_isp_subscription,isp_core.group_isp_admin,1,1,1,1
+access_isp_sub_noc,isp.subscription noc,model_isp_subscription,isp_core.group_isp_noc,1,1,1,0
+access_isp_sub_support,isp.subscription support,model_isp_subscription,isp_core.group_isp_support,1,1,1,0
+access_isp_sub_billing,isp.subscription billing,model_isp_subscription,isp_core.group_isp_billing,1,1,1,0
+
+access_isp_job_admin,isp.provisioning_job admin,model_isp_provisioning_job,isp_core.group_isp_admin,1,1,1,1
+access_isp_job_noc,isp.provisioning_job noc,model_isp_provisioning_job,isp_core.group_isp_noc,1,1,1,0
+access_isp_job_support,isp.provisioning_job support,model_isp_provisioning_job,isp_core.group_isp_support,1,0,0,0
+access_isp_job_billing,isp.provisioning_job billing,model_isp_provisioning_job,isp_core.group_isp_billing,1,0,0,0
+
+access_isp_audit_admin,isp.audit_log admin,model_isp_audit_log,isp_core.group_isp_admin,1,0,0,0
+access_isp_audit_noc,isp.audit_log noc,model_isp_audit_log,isp_core.group_isp_noc,1,0,0,0

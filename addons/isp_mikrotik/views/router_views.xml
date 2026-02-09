@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_mikrotik_router_tree" model="ir.ui.view">
+        <field name="name">isp.mikrotik.router.tree</field>
+        <field name="model">isp.mikrotik.router</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sector_id"/>
+                <field name="auth_method"/>
+                <field name="routeros_version"/>
+                <field name="last_healthcheck_status"/>
+                <field name="last_healthcheck_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_mikrotik_router_form" model="ir.ui.view">
+        <field name="name">isp.mikrotik.router.form</field>
+        <field name="model">isp.mikrotik.router</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_healthcheck" type="object" string="Healthcheck"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="device_id"/>
+                        <field name="sector_id"/>
+                    </group>
+                    <group>
+                        <field name="auth_method"/>
+                        <field name="api_user" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                    </group>
+                    <group>
+                        <field name="routeros_version" readonly="1"/>
+                        <field name="last_healthcheck_status" readonly="1"/>
+                        <field name="last_healthcheck_at" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_mikrotik_router" model="ir.actions.act_window">
+        <field name="name">MikroTik Routers</field>
+        <field name="res_model">isp.mikrotik.router</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_mikrotik_router" name="MikroTik Routers"
+        parent="isp_core.menu_isp_config" action="action_isp_mikrotik_router" sequence="35"/>
+</odoo>

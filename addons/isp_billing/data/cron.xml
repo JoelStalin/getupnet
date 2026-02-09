@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_isp_generate_invoices" model="ir.cron">
+        <field name="name">ISP Generate Invoices</field>
+        <field name="model_id" ref="isp_core.model_isp_subscription"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_generate_invoices()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="ir_cron_isp_suspend_overdue" model="ir.cron">
+        <field name="name">ISP Suspend Overdue</field>
+        <field name="model_id" ref="isp_core.model_isp_subscription"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_suspend_overdue()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="ir_cron_isp_reconnect_on_payment" model="ir.cron">
+        <field name="name">ISP Reconnect On Payment</field>
+        <field name="model_id" ref="isp_core.model_isp_subscription"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_reconnect_on_payment()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

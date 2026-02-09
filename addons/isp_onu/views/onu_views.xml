@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_onu_tree" model="ir.ui.view">
+        <field name="name">isp.onu.tree</field>
+        <field name="model">isp.onu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="serial"/>
+                <field name="vendor"/>
+                <field name="model"/>
+                <field name="sector_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_onu_form" model="ir.ui.view">
+        <field name="name">isp.onu.form</field>
+        <field name="model">isp.onu</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="serial"/>
+                        <field name="vendor"/>
+                        <field name="model"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="sector_id"/>
+                        <field name="olt_ref"/>
+                        <field name="pon_port"/>
+                        <field name="vlan"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_onu" model="ir.actions.act_window">
+        <field name="name">ONU Inventory</field>
+        <field name="res_model">isp.onu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_inventory" name="Inventory" parent="isp_core.menu_isp_root" sequence="15"/>
+    <menuitem id="menu_isp_onu" name="ONU Inventory" parent="menu_isp_inventory" action="action_isp_onu" sequence="10"/>
+</odoo>

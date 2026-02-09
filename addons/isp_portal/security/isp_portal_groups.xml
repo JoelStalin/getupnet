@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_isp_portal_customer" model="res.groups">
+        <field name="name">Portal Customer</field>
+        <field name="category_id" ref="isp_core.module_category_isp"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+</odoo>

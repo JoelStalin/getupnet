@@ -1,0 +1,20 @@
+sector_code: "SEC-BOG-01"
+mgmt_subnet: "192.168.88.0/24"
+bootstrap:
+  user: "admin"
+  pass: "admin"
+routeros:
+  api_port: 8728
+  mgmt_user: "odoo_noc"
+  mgmt_pass_env: "MIKROTIK_MGMT_PASS"
+  allowed_mgmt_ips:
+    - "10.0.0.10"
+    - "10.0.0.20"
+odoo:
+  url: "http://localhost:8069"
+  db: "odoo"
+  user: "admin"
+  pass_env: "ODOO_ADMIN_PASS"
+naming:
+  identity_prefix: "MT-"
+  identity_format: "{prefix}{sector}-{ip_last_octet}"

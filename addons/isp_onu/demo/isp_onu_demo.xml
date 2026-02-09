@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="isp_onu_demo" model="isp.onu">
+        <field name="serial">ONU-DEMO-0001</field>
+        <field name="vendor">DemoVendor</field>
+        <field name="model">ONT-1</field>
+        <field name="sector_id" ref="isp_core.isp_sector_demo"/>
+        <field name="olt_ref">OLT-1</field>
+        <field name="pon_port">PON1</field>
+        <field name="vlan">100</field>
+        <field name="status">installed</field>
+    </record>
+
+    <record id="isp_onu_assignment_demo" model="isp.onu.assignment">
+        <field name="onu_id" ref="isp_onu_demo"/>
+        <field name="subscription_id" ref="isp_core.isp_subscription_demo"/>
+        <field name="active">1</field>
+        <field name="vlan">100</field>
+    </record>
+</odoo>

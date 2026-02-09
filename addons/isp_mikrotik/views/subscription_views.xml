@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_subscription_form_mikrotik" model="ir.ui.view">
+        <field name="name">isp.subscription.form.mikrotik</field>
+        <field name="model">isp.subscription</field>
+        <field name="inherit_id" ref="isp_core.view_isp_subscription_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@string='Network']/group" position="inside">
+                <field name="router_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

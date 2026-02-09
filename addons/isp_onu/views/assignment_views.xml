@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_onu_assignment_tree" model="ir.ui.view">
+        <field name="name">isp.onu.assignment.tree</field>
+        <field name="model">isp.onu.assignment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="onu_id"/>
+                <field name="subscription_id"/>
+                <field name="sector_id"/>
+                <field name="active"/>
+                <field name="assigned_at"/>
+                <field name="unassigned_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_onu_assignment_form" model="ir.ui.view">
+        <field name="name">isp.onu.assignment.form</field>
+        <field name="model">isp.onu.assignment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="onu_id"/>
+                        <field name="subscription_id"/>
+                        <field name="active"/>
+                    </group>
+                    <group>
+                        <field name="assigned_at"/>
+                        <field name="unassigned_at"/>
+                    </group>
+                    <group>
+                        <field name="vlan"/>
+                        <field name="profile"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_onu_assignment" model="ir.actions.act_window">
+        <field name="name">ONU Assignments</field>
+        <field name="res_model">isp.onu.assignment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_onu_assignment" name="ONU Assignments" parent="menu_isp_inventory" action="action_isp_onu_assignment" sequence="20"/>
+
+    <record id="view_isp_subscription_form_onu" model="ir.ui.view">
+        <field name="name">isp.subscription.form.onu</field>
+        <field name="model">isp.subscription</field>
+        <field name="inherit_id" ref="isp_core.view_isp_subscription_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@string='Network']/group" position="inside">
+                <field name="onu_assignment_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

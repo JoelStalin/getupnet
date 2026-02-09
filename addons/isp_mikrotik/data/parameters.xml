@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="param_isp_mikrotik_dry_run" model="ir.config_parameter">
+        <field name="key">isp_mikrotik.dry_run</field>
+        <field name="value">1</field>
+    </record>
+</odoo>

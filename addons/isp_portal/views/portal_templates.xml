@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_isp" name="ISP Portal Home" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[@id='portal_my_home']//div[contains(@class, 'o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">ISP Subscriptions</t>
+                <t t-set="url" t-value="'/my/isp/subscriptions'"/>
+                <t t-set="count" t-value="isp_subscription_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_isp_subscriptions" name="My ISP Subscriptions">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-set="page_name" t-value="'isp_subscriptions'"/>
+
+            <div class="o_portal_my_doc">
+                <h2>My ISP Subscriptions</h2>
+                <t t-if="subscriptions">
+                    <table class="table table-hover o_portal_my_doc_table">
+                        <thead>
+                            <tr>
+                                <th>Subscription</th>
+                                <th>Plan</th>
+                                <th>Sector</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="subscriptions" t-as="sub">
+                                <tr>
+                                    <td><t t-esc="sub.name"/></td>
+                                    <td><t t-esc="sub.plan_id.name"/></td>
+                                    <td><t t-esc="sub.sector_id.name"/></td>
+                                    <td><t t-esc="sub.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+                <t t-else="">
+                    <p>No subscriptions found.</p>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
