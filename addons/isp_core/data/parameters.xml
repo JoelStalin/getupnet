@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="param_isp_mac_auto_create" model="ir.config_parameter">
+        <field name="key">isp_core.mac_auto_create</field>
+        <field name="value">0</field>
+    </record>
+    <record id="param_isp_mac_default_plan_id" model="ir.config_parameter">
+        <field name="key">isp_core.mac_default_plan_id</field>
+        <field name="value"></field>
+    </record>
+    <record id="param_isp_mac_auto_create_captive_user" model="ir.config_parameter">
+        <field name="key">isp_core.mac_auto_create_captive_user</field>
+        <field name="value">0</field>
+    </record>
+    <record id="param_isp_mac_auto_provision_captive" model="ir.config_parameter">
+        <field name="key">isp_core.mac_auto_provision_captive</field>
+        <field name="value">0</field>
+    </record>
+    <record id="param_isp_mac_captive_default_profile" model="ir.config_parameter">
+        <field name="key">isp_core.mac_captive_default_profile</field>
+        <field name="value">default</field>
+    </record>
+    <record id="param_isp_mac_onboarding_token" model="ir.config_parameter">
+        <field name="key">isp_core.mac_onboarding_token</field>
+        <field name="value">CHANGEME</field>
+    </record>
+</odoo>

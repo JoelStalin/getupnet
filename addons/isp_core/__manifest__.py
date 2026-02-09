@@ -9,6 +9,7 @@
         "security/isp_groups.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
+        "data/parameters.xml",
         "data/sequence.xml",
         "data/cron.xml",
         "views/isp_menu.xml",
@@ -18,6 +19,7 @@
         "views/subscription_views.xml",
         "views/res_partner_views.xml",
         "views/res_users_views.xml",
+        "views/mac_profile_views.xml",
         "views/job_views.xml",
         "views/audit_views.xml"
     ],

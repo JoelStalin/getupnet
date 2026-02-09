@@ -34,3 +34,7 @@ access_isp_job_billing,isp.provisioning_job billing,model_isp_provisioning_job,i
 
 access_isp_audit_admin,isp.audit_log admin,model_isp_audit_log,isp_core.group_isp_admin,1,0,0,0
 access_isp_audit_noc,isp.audit_log noc,model_isp_audit_log,isp_core.group_isp_noc,1,0,0,0
+
+access_isp_mac_profile_admin,isp.mac_profile admin,model_isp_mac_profile,isp_core.group_isp_admin,1,1,1,1
+access_isp_mac_profile_noc,isp.mac_profile noc,model_isp_mac_profile,isp_core.group_isp_noc,1,1,1,0
+access_isp_mac_profile_support,isp.mac_profile support,model_isp_mac_profile,isp_core.group_isp_support,1,0,0,0

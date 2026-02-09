@@ -25,8 +25,24 @@ This repo provides a full ISP stack on Odoo 19 with modules:
   - isp_mikrotik.default_api_password = <secret>
 - Sector-based record rules apply to NOC/Support/Field/Billing users. Assign `Allowed ISP Sectors` on the user form, or they will not see sector-bound records.
 
+## MAC onboarding (optional)
+For DHCP/bridge discovery, an HTTP endpoint is available at `/isp/mac_onboarding`:
+- Set `isp_core.mac_onboarding_token` (default is CHANGEME).
+- Optional auto-create:
+  - `isp_core.mac_auto_create = 1`
+  - `isp_core.mac_default_plan_id = <plan_id>`
+The endpoint expects query params: `mac`, `ip`, `bound` (0/1), and optional `sector`, `hostname`.
+
 ## Preloader
 See tools/mikrotik_preloader/README.md
 
 ## Selenium
 Skeleton under tests/selenium
+
+## Manuals and Guides
+- docs/IMPLEMENTATION_GUIDE.md
+- docs/MIKROTIK_PRELOADER.md
+- docs/OLT_STICK_GUIDE.md
+- docs/ODOO_MAC_ONBOARDING.md
+- docs/CAPTIVE_PORTAL.md
+- docs/TROUBLESHOOTING.md

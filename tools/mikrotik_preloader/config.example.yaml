@@ -1,4 +1,4 @@
-sector_code: "SEC-BOG-01"
+sector_code: "SEC-001-los_cacaos"
 mgmt_subnet: "192.168.88.0/24"
 bootstrap:
   user: "admin"
@@ -10,6 +10,33 @@ routeros:
   allowed_mgmt_ips:
     - "10.0.0.10"
     - "10.0.0.20"
+  apply_sector_config: true
+  config:
+    wan_interface: "ether1"            # Starlink WAN
+    lan_bridge: "br-pon"               # Bridge for OLT/ONT side
+    lan_ports:
+      - "sfp1"
+      - "ether2"
+    lan_address: "10.10.10.1/24"
+    dhcp_pool: "pon_pool"
+    dhcp_range: "10.10.10.100-10.10.10.200"
+    dhcp_server: "pon_dhcp"
+    dhcp_lease_time: "1h"
+    dhcp_network: "10.10.10.0/24"
+    dns_server: "10.10.10.1"
+    enable_dhcp_client_wan: true
+    enable_nat: true
+    enable_hotspot: true
+    hotspot_profile: "hs_prof"
+    hotspot_server: "hs1"
+    hotspot_dns_name: "portal.getupsoft.com.do"
+    hotspot_walled_garden: "portal.getupsoft.com.do"
+    hotspot_login_by: "http-chap"
+    hotspot_html_dir: "hotspot"
+webhook:
+  enabled: true
+  url: "http://localhost:8069/isp/mac_onboarding"
+  token_env: "ISP_MAC_TOKEN"
 odoo:
   url: "http://localhost:8069"
   db: "odoo"

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_mac_profile_tree" model="ir.ui.view">
+        <field name="name">isp.mac.profile.tree</field>
+        <field name="model">isp.mac_profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="mac_address"/>
+                <field name="sector_id"/>
+                <field name="plan_id"/>
+                <field name="state"/>
+                <field name="last_seen_ip"/>
+                <field name="last_seen_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_mac_profile_form" model="ir.ui.view">
+        <field name="name">isp.mac.profile.form</field>
+        <field name="model">isp.mac_profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="mac_address"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <field name="sector_id"/>
+                        <field name="plan_id"/>
+                        <field name="partner_id"/>
+                        <field name="subscription_id"/>
+                    </group>
+                    <group>
+                        <field name="last_seen_ip"/>
+                        <field name="last_seen_at"/>
+                        <field name="hostname"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_mac_profile" model="ir.actions.act_window">
+        <field name="name">MAC Profiles</field>
+        <field name="res_model">isp.mac_profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_mac_profile" name="MAC Profiles" parent="isp_core.menu_isp_operations" action="action_isp_mac_profile" sequence="15"/>
+</odoo>

@@ -8,3 +8,4 @@ from . import audit_log
 from . import network_site
 from . import res_partner
 from . import res_users
+from . import mac_profile
