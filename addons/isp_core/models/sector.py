@@ -15,7 +15,8 @@ class IspSector(models.Model):
     gps_lat = fields.Float()
     gps_lng = fields.Float()
     notes = fields.Text()
-
+    active = fields.Boolean(default=True)
+    
     _sql_constraints = [
-        ("isp_sector_code_uniq", "unique(code)", "Sector code must be unique."),
+        ("code_uniq", "unique (code)", "Sector code must be unique."),
     ]

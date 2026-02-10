@@ -7,7 +7,6 @@
         <field name="code">model._cron_generate_invoices()</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
         <field name="active">True</field>
     </record>
 
@@ -18,7 +17,6 @@
         <field name="code">model._cron_suspend_overdue()</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
         <field name="active">True</field>
     </record>
 
@@ -29,7 +27,15 @@
         <field name="code">model._cron_reconnect_on_payment()</field>
         <field name="interval_number">1</field>
         <field name="interval_type">hours</field>
-        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_isp_transfer_deadlines" model="ir.cron">
+        <field name="name">ISP Transfer Deadlines</field>
+        <field name="model_id" ref="model_isp_bank_transfer_payment"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_transfer_deadlines()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
         <field name="active">True</field>
     </record>
 </odoo>

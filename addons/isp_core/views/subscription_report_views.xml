@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_subscription_pivot" model="ir.ui.view">
+        <field name="name">isp.subscription.pivot</field>
+        <field name="model">isp.subscription</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="state" type="row"/>
+                <field name="plan_id" type="row"/>
+                <field name="id" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_isp_subscription_graph" model="ir.ui.view">
+        <field name="name">isp.subscription.graph</field>
+        <field name="model">isp.subscription</field>
+        <field name="arch" type="xml">
+            <graph string="Subscriptions by State">
+                <field name="state" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_isp_subscription_report" model="ir.actions.act_window">
+        <field name="name">Subscriptions Report</field>
+        <field name="res_model">isp.subscription</field>
+        <field name="view_mode">pivot,graph</field>
+    </record>
+</odoo>

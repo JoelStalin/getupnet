@@ -66,14 +66,21 @@ class IspMacOnboardingController(http.Controller):
                         "is_isp_customer": True,
                     })
                     profile.partner_id = partner.id
-                sub = env["isp.subscription"].sudo().create({
+                router_id = False
+                if sector_id and "isp.mikrotik.router" in env.registry.models:
+                    router = env["isp.mikrotik.router"].sudo().search([("sector_id", "=", sector_id)], limit=1)
+                    router_id = router.id if router else False
+                sub_vals = {
                     "partner_id": partner.id,
                     "plan_id": plan.id,
                     "sector_id": sector_for_sub,
                     "service_mac": norm_mac,
                     "service_ip": ip,
                     "state": "draft",
-                })
+                }
+                if "router_id" in env["isp.subscription"]._fields and router_id:
+                    sub_vals["router_id"] = router_id
+                sub = env["isp.subscription"].sudo().create(sub_vals)
                 profile.subscription_id = sub.id
                 profile.plan_id = plan.id
 

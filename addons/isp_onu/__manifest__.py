@@ -9,7 +9,8 @@
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
         "views/onu_views.xml",
-        "views/assignment_views.xml"
+        "views/assignment_views.xml",
+        "views/subscription_views.xml"
     ],
     "demo": [
         "demo/isp_onu_demo.xml",

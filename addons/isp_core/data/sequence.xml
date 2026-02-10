@@ -12,4 +12,16 @@
         <field name="prefix">SUB-</field>
         <field name="padding">6</field>
     </record>
+    <record id="seq_isp_plan_change" model="ir.sequence">
+        <field name="name">ISP Plan Change</field>
+        <field name="code">isp.plan.change.request</field>
+        <field name="prefix">PCR-</field>
+        <field name="padding">6</field>
+    </record>
+    <record id="seq_isp_fault_ticket" model="ir.sequence">
+        <field name="name">ISP Fault Ticket</field>
+        <field name="code">isp.fault.ticket</field>
+        <field name="prefix">FLT-</field>
+        <field name="padding">6</field>
+    </record>
 </odoo>

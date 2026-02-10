@@ -4,14 +4,14 @@
         <field name="name">isp.mikrotik.router.tree</field>
         <field name="model">isp.mikrotik.router</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="sector_id"/>
                 <field name="auth_method"/>
                 <field name="routeros_version"/>
                 <field name="last_healthcheck_status"/>
                 <field name="last_healthcheck_at"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -45,7 +45,7 @@
     <record id="action_isp_mikrotik_router" model="ir.actions.act_window">
         <field name="name">MikroTik Routers</field>
         <field name="res_model">isp.mikrotik.router</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_isp_mikrotik_router" name="MikroTik Routers"

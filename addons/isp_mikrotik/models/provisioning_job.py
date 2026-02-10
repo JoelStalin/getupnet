@@ -12,7 +12,12 @@ class IspProvisioningJob(models.Model):
             ("activate_pppoe", "Activate PPPoE"),
             ("activate_dhcp", "Activate DHCP"),
             ("ensure_queue", "Ensure Queue"),
-        ]
+        ],
+        ondelete={
+            "activate_pppoe": "cascade",
+            "activate_dhcp": "cascade",
+            "ensure_queue": "cascade",
+        },
     )
 
     def _get_router(self):

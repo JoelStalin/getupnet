@@ -6,4 +6,22 @@
         <field name="groups" eval="[(4, ref('isp_portal.group_isp_portal_customer'))]"/>
         <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
     </record>
+    <record id="rule_isp_plan_change_portal" model="ir.rule">
+        <field name="name">ISP Plan Changes: portal own</field>
+        <field name="model_id" ref="isp_core.model_isp_plan_change_request"/>
+        <field name="groups" eval="[(4, ref('isp_portal.group_isp_portal_customer'))]"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+    </record>
+    <record id="rule_isp_fault_ticket_portal" model="ir.rule">
+        <field name="name">ISP Faults: portal own</field>
+        <field name="model_id" ref="isp_core.model_isp_fault_ticket"/>
+        <field name="groups" eval="[(4, ref('isp_portal.group_isp_portal_customer'))]"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+    </record>
+    <record id="rule_isp_transfer_payment_portal" model="ir.rule">
+        <field name="name">ISP Transfers: portal own</field>
+        <field name="model_id" ref="isp_billing.model_isp_bank_transfer_payment"/>
+        <field name="groups" eval="[(4, ref('isp_portal.group_isp_portal_customer'))]"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+    </record>
 </odoo>

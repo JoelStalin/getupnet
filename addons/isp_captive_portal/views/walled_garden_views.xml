@@ -4,12 +4,12 @@
         <field name="name">isp.captive.walled.garden.tree</field>
         <field name="model">isp.captive.walled_garden</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="domain"/>
                 <field name="router_id"/>
                 <field name="sector_id"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -38,7 +38,7 @@
     <record id="action_isp_captive_wg" model="ir.actions.act_window">
         <field name="name">Walled Garden</field>
         <field name="res_model">isp.captive.walled_garden</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_isp_captive_walled_garden" name="Walled Garden" parent="menu_isp_captive_root" action="action_isp_captive_wg" sequence="20"/>

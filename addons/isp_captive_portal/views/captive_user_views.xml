@@ -4,13 +4,13 @@
         <field name="name">isp.captive.user.tree</field>
         <field name="model">isp.captive.user</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="username"/>
                 <field name="profile"/>
                 <field name="state"/>
                 <field name="router_id"/>
                 <field name="expires_at"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -20,8 +20,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_enable" type="object" string="Enable" states="disabled"/>
-                    <button name="action_disable" type="object" string="Disable" states="active"/>
+                    <button name="action_enable" type="object" string="Enable"/>
+                    <button name="action_disable" type="object" string="Disable"/>
                     <field name="state" widget="statusbar" statusbar_visible="active,disabled"/>
                 </header>
                 <sheet>
@@ -47,7 +47,7 @@
     <record id="action_isp_captive_user" model="ir.actions.act_window">
         <field name="name">Captive Users</field>
         <field name="res_model">isp.captive.user</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_isp_captive_root" name="Captive Portal" parent="isp_core.menu_isp_root" sequence="25"/>

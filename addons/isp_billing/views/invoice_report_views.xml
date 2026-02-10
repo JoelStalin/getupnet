@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_move_overdue_pivot_isp" model="ir.ui.view">
+        <field name="name">account.move.overdue.pivot.isp</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <pivot string="Overdue Invoices by Sector">
+                <field name="isp_sector_id" type="row"/>
+                <field name="isp_plan_id" type="row"/>
+                <field name="invoice_date_due" type="col" interval="month"/>
+                <field name="amount_residual" type="measure"/>
+                <field name="amount_total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_account_move_overdue_graph_isp" model="ir.ui.view">
+        <field name="name">account.move.overdue.graph.isp</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <graph string="Overdue Amount by Sector" type="bar">
+                <field name="isp_sector_id" type="row"/>
+                <field name="amount_residual" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_isp_overdue_invoices_report" model="ir.actions.act_window">
+        <field name="name">Overdue Invoices by Sector</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="domain">[
+            ("move_type", "=", "out_invoice"),
+            ("state", "=", "posted"),
+            ("payment_state", "not in", ("paid", "in_payment")),
+            ("invoice_date_due", "!=", False)
+        ]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_isp_overdue_report"
+        name="Overdue Invoices"
+        parent="isp_core.menu_isp_reports"
+        action="action_isp_overdue_invoices_report"
+        sequence="20"/>
+</odoo>

@@ -1,1 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isp_transfer_admin,isp.bank.transfer admin,model_isp_bank_transfer_payment,isp_core.group_isp_admin,1,1,1,1
+access_isp_transfer_billing,isp.bank.transfer billing,model_isp_bank_transfer_payment,isp_core.group_isp_billing,1,1,1,0
+access_isp_transfer_support,isp.bank.transfer support,model_isp_bank_transfer_payment,isp_core.group_isp_support,1,0,0,0
+access_isp_dashboard_admin,isp.dashboard admin,model_isp_dashboard,isp_core.group_isp_admin,1,0,0,0
+access_isp_dashboard_billing,isp.dashboard billing,model_isp_dashboard,isp_core.group_isp_billing,1,0,0,0
+access_isp_dashboard_support,isp.dashboard support,model_isp_dashboard,isp_core.group_isp_support,1,0,0,0

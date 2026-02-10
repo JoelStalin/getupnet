@@ -17,10 +17,10 @@ class IspCaptiveUser(models.Model):
     expires_at = fields.Datetime()
     last_login_at = fields.Datetime()
     notes = fields.Text()
-
-    _sql_constraints = [
-        ("isp_captive_user_uniq", "unique(username)", "Captive username must be unique."),
-    ]
+    _username_uniq = models.Constraint(
+        "unique (username)",
+        "Captive username must be unique.",
+    )
 
     def action_enable(self):
         for rec in self:

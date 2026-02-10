@@ -13,6 +13,7 @@ class IspDevice(models.Model):
         [("mikrotik", "MikroTik"), ("olt", "OLT"), ("other", "Other")],
         required=True,
         default="mikrotik",
+        ondelete="set default",
     )
     sector_id = fields.Many2one("isp.sector", ondelete="restrict")
     mgmt_ip = fields.Char()

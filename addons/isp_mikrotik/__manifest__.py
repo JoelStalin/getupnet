@@ -10,6 +10,7 @@
         "security/ir_rule.xml",
         "data/parameters.xml",
         "views/router_views.xml",
+        "views/preconfig_views.xml",
         "views/subscription_views.xml"
     ],
     "demo": [

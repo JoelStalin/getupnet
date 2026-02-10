@@ -8,6 +8,8 @@ class IspSubscription(models.Model):
     _inherit = "isp.subscription"
 
     last_invoice_id = fields.Many2one("account.move", ondelete="set null")
+    transfer_payment_ids = fields.One2many("isp.bank.transfer.payment", "subscription_id")
+    portal_status = fields.Char(compute="_compute_portal_status", store=False)
 
     def action_generate_invoice(self):
         for sub in self:
@@ -62,6 +64,7 @@ class IspSubscription(models.Model):
     @api.model
     def _cron_suspend_overdue(self):
         today = fields.Date.today()
+        suspend_param = int(self.env["ir.config_parameter"].sudo().get_param("isp_billing.suspend_after_days", "10"))
         moves = self.env["account.move"].search([
             ("isp_subscription_id", "!=", False),
             ("state", "=", "posted"),
@@ -71,7 +74,7 @@ class IspSubscription(models.Model):
             sub = move.isp_subscription_id
             if not sub or sub.state != "active":
                 continue
-            days = sub.plan_id.suspend_after_days or 0
+            days = sub.plan_id.suspend_after_days or suspend_param
             due_date = move.invoice_date_due or move.invoice_date
             if not due_date:
                 continue
@@ -89,3 +92,38 @@ class IspSubscription(models.Model):
             ])
             if open_count == 0:
                 sub._queue_job("reconnect_subscription")
+
+    def _compute_portal_status(self):
+        today = fields.Date.today()
+        grace_days = int(self.env["ir.config_parameter"].sudo().get_param("isp_billing.grace_days", "5"))
+        for sub in self:
+            if sub.state == "suspended":
+                sub.portal_status = "Suspended"
+                continue
+            if sub.state != "active":
+                sub.portal_status = sub.state.capitalize()
+                continue
+            overdue_count = self.env["account.move"].search_count([
+                ("isp_subscription_id", "=", sub.id),
+                ("state", "=", "posted"),
+                ("payment_state", "not in", ("paid", "in_payment")),
+                ("invoice_date_due", "!=", False),
+            ])
+            is_in_grace = False
+            if overdue_count:
+                overdue_invoices = self.env["account.move"].search([
+                    ("isp_subscription_id", "=", sub.id),
+                    ("state", "=", "posted"),
+                    ("payment_state", "not in", ("paid", "in_payment")),
+                    ("invoice_date_due", "!=", False),
+                ])
+                for inv in overdue_invoices:
+                    if inv.invoice_date_due and inv.invoice_date_due + relativedelta(days=grace_days) >= today:
+                        is_in_grace = True
+                        break
+            if overdue_count and not is_in_grace:
+                sub.portal_status = "In arrears"
+            elif overdue_count and is_in_grace:
+                sub.portal_status = "Grace period"
+            else:
+                sub.portal_status = "Up to date"

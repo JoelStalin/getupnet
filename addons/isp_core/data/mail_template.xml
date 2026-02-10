@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_plan_change_submitted" model="mail.template">
+        <field name="name">Plan Change Submitted</field>
+        <field name="model_id" ref="model_isp_plan_change_request"/>
+        <field name="subject">Solicitud de cambio de plan</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>Hemos recibido tu solicitud de cambio de plan para la suscripcion <t t-out="object.subscription_id.name or ''"/>.</p>
+            <ul>
+                <li>Plan solicitado: <strong><t t-out="object.requested_plan_id.name or ''"/></strong></li>
+                <li>Fecha efectiva: <strong><t t-out="object.effective_date or ''"/></strong></li>
+            </ul>
+            <p>Te notificaremos cuando sea aprobada.</p>
+        </field>
+    </record>
+
+    <record id="mail_template_plan_change_approved" model="mail.template">
+        <field name="name">Plan Change Approved</field>
+        <field name="model_id" ref="model_isp_plan_change_request"/>
+        <field name="subject">Cambio de plan aprobado</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>Tu solicitud de cambio de plan ha sido aprobada.</p>
+            <ul>
+                <li>Plan aprobado: <strong><t t-out="object.requested_plan_id.name or ''"/></strong></li>
+                <li>Fecha efectiva: <strong><t t-out="object.effective_date or ''"/></strong></li>
+            </ul>
+        </field>
+    </record>
+
+    <record id="mail_template_plan_change_rejected" model="mail.template">
+        <field name="name">Plan Change Rejected</field>
+        <field name="model_id" ref="model_isp_plan_change_request"/>
+        <field name="subject">Cambio de plan rechazado</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>Tu solicitud de cambio de plan fue rechazada.</p>
+            <p>Motivo: <t t-out="object.rejection_reason or ''"/></p>
+        </field>
+    </record>
+
+    <record id="mail_template_plan_change_applied" model="mail.template">
+        <field name="name">Plan Change Applied</field>
+        <field name="model_id" ref="model_isp_plan_change_request"/>
+        <field name="subject">Cambio de plan aplicado</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>El cambio de plan ha sido aplicado a tu suscripcion <t t-out="object.subscription_id.name or ''"/>.</p>
+            <p>Nuevo plan: <strong><t t-out="object.requested_plan_id.name or ''"/></strong></p>
+        </field>
+    </record>
+
+    <record id="mail_template_fault_created" model="mail.template">
+        <field name="name">Fault Ticket Created</field>
+        <field name="model_id" ref="model_isp_fault_ticket"/>
+        <field name="subject">Averia registrada</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>Hemos registrado tu reporte de averia <strong><t t-out="object.name or ''"/></strong>.</p>
+            <p>Prioridad: <t t-out="object.priority or ''"/></p>
+        </field>
+    </record>
+
+    <record id="mail_template_fault_resolved" model="mail.template">
+        <field name="name">Fault Ticket Resolved</field>
+        <field name="model_id" ref="model_isp_fault_ticket"/>
+        <field name="subject">Averia resuelta</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>Tu averia <strong><t t-out="object.name or ''"/></strong> ha sido marcada como resuelta.</p>
+        </field>
+    </record>
+
+    <record id="mail_template_fault_closed" model="mail.template">
+        <field name="name">Fault Ticket Closed</field>
+        <field name="model_id" ref="model_isp_fault_ticket"/>
+        <field name="subject">Averia cerrada</field>
+        <field name="email_from">{{ (user.email_formatted or '') }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="use_default_to" eval="False"/>
+        <field name="body_html" type="html">
+            <p>Hola <t t-out="object.partner_id.name or ''"/></p>
+            <p>La averia <strong><t t-out="object.name or ''"/></strong> ha sido cerrada. Gracias por tu paciencia.</p>
+        </field>
+    </record>
+</odoo>

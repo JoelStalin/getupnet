@@ -2,3 +2,4 @@
 from . import router
 from . import subscription
 from . import provisioning_job
+from . import preconfig

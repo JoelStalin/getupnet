@@ -17,10 +17,10 @@ class IspMacProfile(models.Model):
     last_seen_at = fields.Datetime()
     hostname = fields.Char()
     notes = fields.Text()
-
-    _sql_constraints = [
-        ("isp_mac_profile_uniq", "unique(mac_address)", "MAC address must be unique."),
-    ]
+    _mac_uniq = models.Constraint(
+        "unique (mac_address)",
+        "MAC address must be unique.",
+    )
 
     @api.model
     def normalize_mac(self, mac):

@@ -4,13 +4,14 @@
         <field name="name">isp.service.plan.tree</field>
         <field name="model">isp.service_plan</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="service_type"/>
+                <field name="billing_cycle"/>
                 <field name="down_mbps"/>
                 <field name="up_mbps"/>
                 <field name="price"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -29,6 +30,7 @@
                         <field name="up_mbps"/>
                         <field name="price"/>
                         <field name="currency_id"/>
+                        <field name="billing_cycle"/>
                     </group>
                     <group>
                         <field name="mikrotik_profile"/>

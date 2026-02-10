@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   db:
     image: postgres:15
@@ -24,6 +23,12 @@ services:
       - odoo-data:/var/lib/odoo
       - ./addons:/mnt/extra-addons
       - ./etc/odoo.conf:/etc/odoo/odoo.conf
+      - ./tests:/mnt/tests
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: "2gb"
+    ports:
+      - "4444:4444"
 volumes:
   db-data:
   odoo-data:

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_mikrotik_preconfig_tree" model="ir.ui.view">
+        <field name="name">isp.mikrotik.preconfig.tree</field>
+        <field name="model">isp.mikrotik.preconfig</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sector_id"/>
+                <field name="is_default"/>
+                <field name="active"/>
+                <field name="sequence"/>
+                <field name="wan_interface"/>
+                <field name="lan_bridge"/>
+                <field name="lan_ports"/>
+                <field name="lan_address"/>
+                <field name="dhcp_range"/>
+                <field name="enable_hotspot"/>
+                <field name="call_home_enabled"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_isp_mikrotik_preconfig_form" model="ir.ui.view">
+        <field name="name">isp.mikrotik.preconfig.form</field>
+        <field name="model">isp.mikrotik.preconfig</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="sector_id"/>
+                        <field name="is_default"/>
+                    </group>
+
+                    <group string="Local / Preloader">
+                        <field name="mgmt_subnet"/>
+                        <field name="target_mac"/>
+                        <field name="bootstrap_user"/>
+                        <field name="bootstrap_pass"/>
+                    </group>
+
+                    <group string="RouterOS (Management)">
+                        <field name="api_port"/>
+                        <field name="routeros_mgmt_user"/>
+                        <field name="routeros_mgmt_pass_env"/>
+                        <field name="routeros_mgmt_pass_value"/>
+                        <field name="discovery_interfaces"/>
+                        <field name="allowed_mgmt_ips"/>
+                        <field name="apply_sector_config"/>
+                    </group>
+
+                    <group string="Naming">
+                        <field name="identity_prefix"/>
+                        <field name="identity_format"/>
+                    </group>
+
+                    <group string="Network">
+                        <field name="wan_interface"/>
+                        <field name="lan_bridge"/>
+                        <field name="lan_ports"/>
+                        <field name="lan_address"/>
+                        <field name="enable_dhcp_client_wan"/>
+                        <field name="enable_nat"/>
+                        <field name="dns_server"/>
+                    </group>
+
+                    <group string="DHCP">
+                        <field name="dhcp_pool"/>
+                        <field name="dhcp_range"/>
+                        <field name="dhcp_server"/>
+                        <field name="dhcp_lease_time"/>
+                        <field name="dhcp_network"/>
+                    </group>
+
+                    <group string="Hotspot">
+                        <field name="enable_hotspot"/>
+                        <field name="hotspot_profile" attrs="{'invisible':[('enable_hotspot','=',False)]}"/>
+                        <field name="hotspot_server" attrs="{'invisible':[('enable_hotspot','=',False)]}"/>
+                        <field name="hotspot_dns_name" attrs="{'invisible':[('enable_hotspot','=',False)]}"/>
+                        <field name="hotspot_walled_garden" attrs="{'invisible':[('enable_hotspot','=',False)]}"/>
+                        <field name="hotspot_login_by" attrs="{'invisible':[('enable_hotspot','=',False)]}"/>
+                        <field name="hotspot_html_dir" attrs="{'invisible':[('enable_hotspot','=',False)]}"/>
+                    </group>
+
+                    <group string="Call-home">
+                        <field name="call_home_enabled"/>
+                        <field name="call_home_url" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_token_value" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_interval" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_ip_lookup_url" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_script_name" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_scheduler_name" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_check_certificate" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                        <field name="call_home_mac_interface" attrs="{'invisible':[('call_home_enabled','=',False)]}"/>
+                    </group>
+
+                    <group string="Webhook (MAC onboarding)">
+                        <field name="webhook_enabled"/>
+                        <field name="webhook_url" attrs="{'invisible':[('webhook_enabled','=',False)]}"/>
+                        <field name="webhook_token_value" attrs="{'invisible':[('webhook_enabled','=',False)]}"/>
+                        <field name="webhook_clear_lease_script_on_disable" attrs="{'invisible':[('webhook_enabled','=',False)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_mikrotik_preconfig" model="ir.actions.act_window">
+        <field name="name">MikroTik Preconfig</field>
+        <field name="res_model">isp.mikrotik.preconfig</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_isp_mikrotik_preconfig"
+              name="MikroTik Preconfig"
+              parent="isp_core.menu_isp_config"
+              action="action_isp_mikrotik_preconfig"
+              sequence="33"/>
+</odoo>

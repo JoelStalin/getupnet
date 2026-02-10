@@ -4,7 +4,7 @@
         <field name="name">isp.provisioning.job.tree</field>
         <field name="model">isp.provisioning_job</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="job_type"/>
                 <field name="subscription_id"/>
@@ -12,7 +12,7 @@
                 <field name="state"/>
                 <field name="requested_at"/>
                 <field name="attempts"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -22,7 +22,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_run" type="object" string="Run" states="queued"/>
+                    <button name="action_run" type="object" string="Run"/>
                     <field name="state" widget="statusbar" statusbar_visible="queued,running,success,failed"/>
                 </header>
                 <sheet>

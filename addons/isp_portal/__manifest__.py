@@ -4,7 +4,7 @@
     "version": "19.0.1.0.0",
     "category": "Website",
     "summary": "Customer portal for ISP subscriptions",
-    "depends": ["isp_core", "portal", "website"],
+    "depends": ["isp_core", "isp_billing", "portal", "website"],
     "data": [
         "security/isp_portal_groups.xml",
         "security/ir.model.access.csv",

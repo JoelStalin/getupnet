@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_dashboard_form" model="ir.ui.view">
+        <field name="name">isp.dashboard.form</field>
+        <field name="model">isp.dashboard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_open_active_subscriptions" class="oe_stat_button" icon="fa-users">
+                            <field name="active_subscriptions" widget="statinfo" string="Active"/>
+                        </button>
+                        <button type="object" name="action_open_up_to_date_subscriptions" class="oe_stat_button" icon="fa-check">
+                            <field name="up_to_date_subscriptions" widget="statinfo" string="Up to date"/>
+                        </button>
+                        <button type="object" name="action_open_suspended_subscriptions" class="oe_stat_button" icon="fa-ban">
+                            <field name="suspended_subscriptions" widget="statinfo" string="Suspended"/>
+                        </button>
+                        <button type="object" name="action_open_in_arrears_subscriptions" class="oe_stat_button" icon="fa-exclamation-triangle">
+                            <field name="overdue_subscriptions" widget="statinfo" string="In arrears"/>
+                        </button>
+                        <button type="object" name="action_open_transfer_pending" class="oe_stat_button" icon="fa-university">
+                            <field name="transfer_pending" widget="statinfo" string="Transfers"/>
+                        </button>
+                        <button type="object" name="action_open_faults_open" class="oe_stat_button" icon="fa-wrench">
+                            <field name="faults_open" widget="statinfo" string="Faults"/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="mrr" readonly="1"/>
+                        <field name="invoices_month" readonly="1"/>
+                        <field name="transfer_attention" readonly="1"/>
+                        <field name="grace_subscriptions" readonly="1"/>
+                        <field name="faults_closed" readonly="1"/>
+                        <field name="avg_resolution_hours" readonly="1"/>
+                        <field name="top_overdue_sectors" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_isp_dashboard" model="ir.actions.act_window">
+        <field name="name">ISP Dashboard</field>
+        <field name="res_model">isp.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="isp_dashboard_record"/>
+    </record>
+
+    <menuitem id="menu_isp_dashboard" name="Dashboard" parent="isp_core.menu_isp_reports" action="action_isp_dashboard" sequence="5"/>
+</odoo>

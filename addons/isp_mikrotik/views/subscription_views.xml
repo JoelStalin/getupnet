@@ -5,7 +5,7 @@
         <field name="model">isp.subscription</field>
         <field name="inherit_id" ref="isp_core.view_isp_subscription_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@string='Network']/group" position="inside">
+            <xpath expr="//page[@name='network']/group" position="inside">
                 <field name="router_id"/>
             </xpath>
         </field>

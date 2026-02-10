@@ -11,6 +11,7 @@ CPE behind the ONU) requests an IP address.
    - MIKROTIK_MGMT_PASS
    - ODOO_ADMIN_PASS
    - ISP_MAC_TOKEN (matches isp_core.mac_onboarding_token in Odoo)
+   - ISP_HOME_TOKEN (optional, overrides default call-home token)
 3. Install deps:
    - pip install -r requirements.txt
 
@@ -21,3 +22,5 @@ python preloader.py --config config.yaml
 - This script configures the MikroTik only. The GPON OLT stick is managed by its own software.
 - DHCP-based discovery sees the MAC/IP that requests DHCP (often the CPE behind the ONU).
 - For captive portal with Odoo domain, set `hotspot_dns_name` and `hotspot_walled_garden` in config.
+- For the external captive portal page in Odoo, set `hotspot_login_by: http-pap`.
+- If `odoo.fetch_preconfig = true`, the preloader will ask Odoo for the preconfig profile before applying the RouterOS config.

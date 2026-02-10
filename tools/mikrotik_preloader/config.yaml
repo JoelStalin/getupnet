@@ -1,0 +1,71 @@
+﻿sector_code: "SEC-001-los_cacaos"
+mgmt_subnet: "192.168.88.1/32"
+target_mac: "B8:69:F4:E8:53:04"
+bootstrap:
+  user: "admin"
+  pass: ""
+  pass_env: "MIKROTIK_BOOTSTRAP_PASS"
+routeros:
+  api_port: 8728
+  mgmt_user: "odoo_noc"
+  mgmt_pass_env: "MIKROTIK_MGMT_PASS"
+  discovery_interfaces:
+    - "ether2"
+    - "ether3"
+    - "ether4"
+    - "wlan1"
+  allowed_mgmt_ips:
+    - "10.0.0.21"
+    - "192.168.137.1"
+    - "192.168.160.1"
+    - "192.168.88.2"
+  allowed_mgmt_ips_env: "ODOO_PUBLIC_IPS"
+  apply_sector_config: true
+  config:
+    wan_interface: "ether2"
+    lan_bridge: "br-pon"
+    lan_ports:
+      - "ether3"
+      - "ether4"
+      - "wlan1"
+    lan_address: "10.10.10.1/24"
+    dhcp_pool: "pon_pool"
+    dhcp_range: "10.10.10.100-10.10.10.200"
+    dhcp_server: "pon_dhcp"
+    dhcp_lease_time: "1h"
+    dhcp_network: "10.10.10.0/24"
+    dns_server: "10.10.10.1"
+    enable_dhcp_client_wan: true
+    enable_nat: true
+    enable_hotspot: false
+    hotspot_profile: "hs_prof"
+    hotspot_server: "hs1"
+    hotspot_dns_name: "portal.getupsoft.com.do"
+    hotspot_walled_garden: "portal.getupsoft.com.do"
+    hotspot_login_by: "http-pap"
+    hotspot_html_dir: "hotspot"
+webhook:
+  enabled: false
+  url: "http://192.168.88.2:8069/isp/mac_onboarding"
+  token_env: "ISP_MAC_TOKEN"
+  clear_lease_script_on_disable: true
+call_home:
+  enabled: true
+  url: "https://isp.getupsoft.com.do/isp/mikrotik/checkin"
+  token_env: "ISP_HOME_TOKEN"
+  token_value: "GETUPNET-DEFAULT-TOKEN"
+  interval: "5m"
+  ip_lookup_url: "http://api.ipify.org"
+  script_name: "isp_checkin"
+  scheduler_name: "isp_checkin"
+  check_certificate: false
+odoo:
+  fetch_preconfig: true
+  register_device: false
+  url: "http://192.168.88.2:8069"
+  db: "isp"
+  user: "admin"
+  pass_env: "ODOO_ADMIN_PASS"
+naming:
+  identity_prefix: "MT-"
+  identity_format: "{prefix}{sector}-{ip_last_octet}"

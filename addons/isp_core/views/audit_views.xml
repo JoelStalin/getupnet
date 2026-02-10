@@ -4,13 +4,13 @@
         <field name="name">isp.audit.log.tree</field>
         <field name="model">isp.audit_log</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="timestamp"/>
                 <field name="action"/>
                 <field name="record_model"/>
                 <field name="record_name"/>
                 <field name="user_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

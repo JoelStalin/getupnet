@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_audit_pivot" model="ir.ui.view">
+        <field name="name">isp.audit.log.pivot</field>
+        <field name="model">isp.audit_log</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="action" type="row"/>
+                <field name="timestamp" type="col" interval="month"/>
+                <field name="id" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_isp_audit_graph" model="ir.ui.view">
+        <field name="name">isp.audit.log.graph</field>
+        <field name="model">isp.audit_log</field>
+        <field name="arch" type="xml">
+            <graph string="Audit Actions by Month" type="bar">
+                <field name="timestamp" type="col" interval="month"/>
+                <field name="action" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_isp_audit_suspensions" model="ir.actions.act_window">
+        <field name="name">Suspensions &amp; Reconnections</field>
+        <field name="res_model">isp.audit_log</field>
+        <field name="view_mode">pivot,graph,list,form</field>
+        <field name="domain">[
+            ("action", "in", ("suspend_subscription", "reconnect_subscription"))
+        ]</field>
+    </record>
+
+    <menuitem id="menu_isp_audit_suspensions" name="Suspensions &amp; Reconnections"
+        parent="menu_isp_reports" action="action_isp_audit_suspensions" sequence="30"/>
+</odoo>

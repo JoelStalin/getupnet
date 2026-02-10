@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_subscription_form_onu" model="ir.ui.view">
+        <field name="name">isp.subscription.form.onu</field>
+        <field name="model">isp.subscription</field>
+        <field name="inherit_id" ref="isp_core.view_isp_subscription_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="onu_assignments" string="ONU Assignments">
+                    <field name="onu_assignment_ids">
+                        <list>
+                            <field name="onu_id"/>
+                            <field name="active"/>
+                            <field name="assigned_at"/>
+                            <field name="unassigned_at"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

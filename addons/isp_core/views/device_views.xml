@@ -4,13 +4,13 @@
         <field name="name">isp.device.tree</field>
         <field name="model">isp.device</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="device_type"/>
                 <field name="sector_id"/>
                 <field name="mgmt_ip"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

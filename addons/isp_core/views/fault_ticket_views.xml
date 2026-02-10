@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_fault_ticket_tree" model="ir.ui.view">
+        <field name="name">isp.fault.ticket.tree</field>
+        <field name="model">isp.fault.ticket</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="subscription_id"/>
+                <field name="fault_type"/>
+                <field name="priority"/>
+                <field name="state"/>
+                <field name="assigned_to"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_isp_fault_ticket_form" model="ir.ui.view">
+        <field name="name">isp.fault.ticket.form</field>
+        <field name="model">isp.fault.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start" type="object" string="Start"/>
+                    <button name="action_waiting" type="object" string="Waiting Customer"/>
+                    <button name="action_resolve" type="object" string="Resolve"/>
+                    <button name="action_close" type="object" string="Close"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,in_progress,waiting_customer,resolved,closed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="subscription_id"/>
+                        <field name="sector_id"/>
+                    </group>
+                    <group>
+                        <field name="fault_type"/>
+                        <field name="priority"/>
+                        <field name="assigned_to"/>
+                    </group>
+                    <group>
+                        <field name="gps_lat"/>
+                        <field name="gps_lng"/>
+                        <field name="opened_at"/>
+                        <field name="closed_at"/>
+                    </group>
+                    <group>
+                        <field name="resolution_time_hours" readonly="1"/>
+                        <field name="sla_target_hours" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isp_fault_ticket_pivot" model="ir.ui.view">
+        <field name="name">isp.fault.ticket.pivot</field>
+        <field name="model">isp.fault.ticket</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="sector_id" type="row"/>
+                <field name="priority" type="row"/>
+                <field name="state" type="col"/>
+                <field name="opened_at" type="col" interval="month"/>
+                <field name="id" type="measure"/>
+                <field name="resolution_time_hours" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_isp_fault_ticket_graph" model="ir.ui.view">
+        <field name="name">isp.fault.ticket.graph</field>
+        <field name="model">isp.fault.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Fault Tickets">
+                <field name="opened_at" type="col" interval="month"/>
+                <field name="sector_id" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+</odoo>

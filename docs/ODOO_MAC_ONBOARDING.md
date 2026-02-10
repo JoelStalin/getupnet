@@ -24,4 +24,5 @@ Set these System Parameters:
 
 ## Result
 - Creates/updates `isp.mac_profile`.
-- Optionally creates `isp.subscription` and `isp.captive.user`.
+- Optionally creates `isp.subscription` (and links to a router in the sector if available).
+- Optionally creates `isp.captive.user` and provisions it to MikroTik.

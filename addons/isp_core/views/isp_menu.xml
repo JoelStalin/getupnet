@@ -3,37 +3,47 @@
     <record id="action_isp_sector" model="ir.actions.act_window">
         <field name="name">Sectors</field>
         <field name="res_model">isp.sector</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <record id="action_isp_network_site" model="ir.actions.act_window">
         <field name="name">Network Sites</field>
         <field name="res_model">isp.network_site</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <record id="action_isp_device" model="ir.actions.act_window">
         <field name="name">Devices</field>
         <field name="res_model">isp.device</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <record id="action_isp_service_plan" model="ir.actions.act_window">
         <field name="name">Service Plans</field>
         <field name="res_model">isp.service_plan</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <record id="action_isp_subscription" model="ir.actions.act_window">
         <field name="name">Subscriptions</field>
         <field name="res_model">isp.subscription</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <record id="action_isp_job" model="ir.actions.act_window">
         <field name="name">Provisioning Jobs</field>
         <field name="res_model">isp.provisioning_job</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <record id="action_isp_audit" model="ir.actions.act_window">
         <field name="name">Audit Log</field>
         <field name="res_model">isp.audit_log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="action_isp_plan_change" model="ir.actions.act_window">
+        <field name="name">Plan Change Requests</field>
+        <field name="res_model">isp.plan.change.request</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="action_isp_fault_ticket" model="ir.actions.act_window">
+        <field name="name">Fault Tickets</field>
+        <field name="res_model">isp.fault.ticket</field>
+        <field name="view_mode">list,form,pivot,graph</field>
     </record>
 
     <menuitem id="menu_isp_root" name="ISP" sequence="10"
@@ -41,13 +51,18 @@
 
     <menuitem id="menu_isp_operations" name="Operations" parent="menu_isp_root" sequence="10"/>
     <menuitem id="menu_isp_config" name="Configuration" parent="menu_isp_root" sequence="20"/>
+    <menuitem id="menu_isp_reports" name="Reports" parent="menu_isp_root" sequence="30"/>
 
     <menuitem id="menu_isp_subscription" name="Subscriptions" parent="menu_isp_operations" action="action_isp_subscription" sequence="10"/>
     <menuitem id="menu_isp_job" name="Provisioning Jobs" parent="menu_isp_operations" action="action_isp_job" sequence="20"/>
     <menuitem id="menu_isp_audit" name="Audit Log" parent="menu_isp_operations" action="action_isp_audit" sequence="30"/>
+    <menuitem id="menu_isp_plan_change" name="Plan Change Requests" parent="menu_isp_operations" action="action_isp_plan_change" sequence="40"/>
+    <menuitem id="menu_isp_fault_ticket" name="Fault Tickets" parent="menu_isp_operations" action="action_isp_fault_ticket" sequence="50"/>
 
     <menuitem id="menu_isp_sector" name="Sectors" parent="menu_isp_config" action="action_isp_sector" sequence="10"/>
     <menuitem id="menu_isp_network_site" name="Network Sites" parent="menu_isp_config" action="action_isp_network_site" sequence="20"/>
     <menuitem id="menu_isp_device" name="Devices" parent="menu_isp_config" action="action_isp_device" sequence="30"/>
     <menuitem id="menu_isp_service_plan" name="Service Plans" parent="menu_isp_config" action="action_isp_service_plan" sequence="40"/>
+
+    <menuitem id="menu_isp_subscription_report" name="Subscriptions Report" parent="menu_isp_reports" action="action_isp_subscription_report" sequence="10"/>
 </odoo>

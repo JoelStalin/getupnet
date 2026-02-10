@@ -6,9 +6,9 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
-from tests.selenium.pages.login_page import LoginPage
-from tests.selenium.pages.odoo_ui import OdooUI
-from tests.selenium.odoo_rpc import OdooRPC
+from tests.isp_selenium.pages.login_page import LoginPage
+from tests.isp_selenium.pages.odoo_ui import OdooUI
+from tests.isp_selenium.odoo_rpc import OdooRPC
 
 
 @pytest.fixture
@@ -17,8 +17,16 @@ def driver():
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    service = Service(ChromeDriverManager().install())
-    d = webdriver.Chrome(service=service, options=options)
+    remote_url = os.environ.get("SELENIUM_REMOTE_URL")
+    if remote_url:
+        d = webdriver.Remote(command_executor=remote_url, options=options)
+    else:
+        chrome_bin = os.environ.get("CHROME_BIN")
+        if chrome_bin:
+            options.binary_location = chrome_bin
+        driver_path = os.environ.get("CHROMEDRIVER_PATH") or ChromeDriverManager().install()
+        service = Service(driver_path)
+        d = webdriver.Chrome(service=service, options=options)
     yield d
     d.quit()
 
@@ -32,7 +40,7 @@ def test_login_admin(driver):
     page.open()
     page.login(user, password)
 
-    assert "web" in driver.current_url
+    assert "/web" in driver.current_url or "/odoo" in driver.current_url
 
 
 @pytest.mark.skipif(not os.environ.get("ISP_E2E"), reason="Set ISP_E2E=1 to run UI flows")
@@ -45,7 +53,9 @@ def test_01_create_sector_and_mikrotik_device(driver):
     page.open()
     page.login(user, password)
 
-    ui = OdooUI(driver)
+    rpc = OdooRPC()
+    rpc.ensure_user_in_group(user, "isp_core.group_isp_admin")
+    ui = OdooUI(driver, base_url=base_url, rpc=rpc)
     suffix = str(int(time.time()))
 
     ui.open_menu("isp_core.menu_isp_sector")
@@ -76,7 +86,9 @@ def test_02_create_plan_and_subscription_draft(driver):
     page.open()
     page.login(user, password)
 
-    ui = OdooUI(driver)
+    rpc = OdooRPC()
+    rpc.ensure_user_in_group(user, "isp_core.group_isp_admin")
+    ui = OdooUI(driver, base_url=base_url, rpc=rpc)
     suffix = str(int(time.time()))
 
     ui.open_menu("isp_core.menu_isp_service_plan")
@@ -88,7 +100,6 @@ def test_02_create_plan_and_subscription_draft(driver):
     ui.set_field("price", "15")
     ui.click_save()
 
-    rpc = OdooRPC()
     sector_id = rpc.ensure(
         "isp.sector",
         [("code", "=", f"SEL-{suffix}")],

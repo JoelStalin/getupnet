@@ -10,6 +10,7 @@ routeros:
   allowed_mgmt_ips:
     - "10.0.0.10"
     - "10.0.0.20"
+  allowed_mgmt_ips_env: "ODOO_PUBLIC_IPS"
   apply_sector_config: true
   config:
     wan_interface: "ether1"            # Starlink WAN
@@ -31,13 +32,27 @@ routeros:
     hotspot_server: "hs1"
     hotspot_dns_name: "portal.getupsoft.com.do"
     hotspot_walled_garden: "portal.getupsoft.com.do"
-    hotspot_login_by: "http-chap"
+    hotspot_login_by: "http-pap"
     hotspot_html_dir: "hotspot"
 webhook:
   enabled: true
   url: "http://localhost:8069/isp/mac_onboarding"
   token_env: "ISP_MAC_TOKEN"
+  token_value: ""
+  clear_lease_script_on_disable: true
+call_home:
+  enabled: true
+  url: "https://isp.getupsoft.com.do/isp/mikrotik/checkin"
+  token_env: "ISP_HOME_TOKEN"
+  token_value: "GETUPNET-DEFAULT-TOKEN"
+  interval: "5m"
+  ip_lookup_url: "http://api.ipify.org"
+  script_name: "isp_checkin"
+  scheduler_name: "isp_checkin"
+  check_certificate: false
 odoo:
+  fetch_preconfig: true
+  register_device: false
   url: "http://localhost:8069"
   db: "odoo"
   user: "admin"

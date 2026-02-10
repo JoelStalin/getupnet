@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_isp_bank_transfer" model="ir.sequence">
+        <field name="name">ISP Bank Transfer</field>
+        <field name="code">isp.bank.transfer.payment</field>
+        <field name="prefix">BTP-</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

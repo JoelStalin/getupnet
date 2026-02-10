@@ -1,48 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="portal_my_home_isp" name="ISP Portal Home" inherit_id="portal.portal_my_home">
-        <xpath expr="//div[@id='portal_my_home']//div[contains(@class, 'o_portal_docs')]" position="inside">
+    <!-- Portal Menu Item -->
+    <template id="portal_my_home_menu_isp" name="Portal layout : ISP Menu" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'isp_subscription'" class="breadcrumb-item">
+                <a t-if="subscription" href="/my/isp">ISP Services</a>
+                <t t-else="">ISP Services</t>
+            </li>
+            <li t-if="subscription" class="breadcrumb-item active">
+                <span t-field="subscription.name"/>
+            </li>
+            <li t-if="page_name == 'isp_payment_transfer'" class="breadcrumb-item">
+                <a href="/my/isp">ISP Services</a>
+                <span class="breadcrumb-item active"> / Report Payment</span>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_isp" name="Show ISP Services" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
-                <t t-set="title">ISP Subscriptions</t>
-                <t t-set="url" t-value="'/my/isp/subscriptions'"/>
-                <t t-set="count" t-value="isp_subscription_count"/>
+                <t t-set="title">ISP Services</t>
+                <t t-set="url" t-value="'/my/isp'"/>
+                <t t-set="placeholder_count" t-value="'isp_subscription_count'"/>
             </t>
         </xpath>
     </template>
 
+    <!-- List View -->
     <template id="portal_my_isp_subscriptions" name="My ISP Subscriptions">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
-            <t t-set="page_name" t-value="'isp_subscriptions'"/>
 
-            <div class="o_portal_my_doc">
-                <h2>My ISP Subscriptions</h2>
-                <t t-if="subscriptions">
-                    <table class="table table-hover o_portal_my_doc_table">
-                        <thead>
-                            <tr>
-                                <th>Subscription</th>
-                                <th>Plan</th>
-                                <th>Sector</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="subscriptions" t-as="sub">
-                                <tr>
-                                    <td><t t-esc="sub.name"/></td>
-                                    <td><t t-esc="sub.plan_id.name"/></td>
-                                    <td><t t-esc="sub.sector_id.name"/></td>
-                                    <td><t t-esc="sub.state"/></td>
-                                </tr>
-                            </t>
-                        </tbody>
-                    </table>
-                </t>
-                <t t-else="">
-                    <p>No subscriptions found.</p>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">ISP Services</t>
+            </t>
+            
+            <div class="list-group list-group-flush mt-4">
+                <t t-foreach="subscriptions" t-as="sub">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1"><span t-field="sub.name"/></h5>
+                                <p class="mb-1 text-muted">
+                                    <span t-field="sub.plan_id.name"/> - <span t-field="sub.address_text"/>
+                                </p>
+                            </div>
+                            <div class="text-end">
+                                <span t-field="sub.state" class="badge rounded-pill bg-info text-dark" style="font-size: 0.9em;"/>
+                                <br/>
+                                <a t-attf-href="/my/isp/service/#{sub.id}" class="btn btn-sm btn-primary mt-2">Details</a>
+                            </div>
+                        </div>
+                    </div>
                 </t>
             </div>
+        </t>
+    </template>
+
+    <!-- Detail View -->
+    <template id="portal_my_isp_subscription_detail" name="Subscription Detail">
+        <t t-call="portal.portal_layout">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <div class="d-flex justify-content-between">
+                        <h3>Service: <span t-field="subscription.name"/></h3>
+                        <span t-field="subscription.state" class="badge bg-primary fs-6"/>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Plan Details</h5>
+                            <p><strong>Plan:</strong> <span t-field="subscription.plan_id.name"/></p>
+                            <p><strong>Speed:</strong> <span t-field="subscription.plan_id.down_mbps"/> Mbps Down / <span t-field="subscription.plan_id.up_mbps"/> Mbps Up</p>
+                            <p><strong>Price:</strong> <span t-field="subscription.plan_id.price_monthly"/> <span t-field="subscription.plan_id.currency_id.symbol"/></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Connection Info</h5>
+                            <p><strong>IP Address:</strong> <span t-field="subscription.ip_address"/></p>
+                            <p><strong>Auth Method:</strong> <span t-field="subscription.auth_method"/></p>
+                            <p><strong>Installation Address:</strong> <span t-field="subscription.address_text"/></p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a t-attf-href="/my/isp/plan/change/#{subscription.id}" class="btn btn-warning">Request Plan Change</a>
+                        <a href="/my/isp/payment/transfer" class="btn btn-success ms-2">Report Payment</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <h4>Recent Audits / History</h4>
+                <!-- Todo override mail_thread -->
+            </div>
+        </t>
+    </template>
+
+    <!-- Plan Change Form -->
+    <template id="portal_my_isp_plan_change" name="Change Plan">
+        <t t-call="portal.portal_layout">
+            <h3>Change Plan for <span t-field="subscription.name"/></h3>
+            <form action="/my/isp/plan/change/submit" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="subscription_id" t-att-value="subscription.id"/>
+                
+                <div class="mb-3">
+                    <label class="form-label">Current Plan</label>
+                    <input type="text" class="form-control" t-att-value="subscription.plan_id.name" disabled="disabled"/>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">New Plan</label>
+                    <select name="plan_id" class="form-select" required="required">
+                        <t t-foreach="plans" t-as="plan">
+                            <option t-att-value="plan.id" t-if="plan.id != subscription.plan_id.id">
+                                <t t-esc="plan.name"/> - <t t-esc="plan.price_monthly"/> <t t-esc="plan.currency_id.symbol"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+                <a t-attf-href="/my/isp/service/#{subscription.id}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </t>
+    </template>
+
+    <!-- Payment Transfer Form -->
+    <template id="portal_my_isp_payment_transfer" name="Report Payment">
+        <t t-call="portal.portal_layout">
+            <h3>Report Bank Transfer</h3>
+            <form action="/my/isp/payment/transfer/submit" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                
+                <div class="mb-3">
+                    <label class="form-label">Bank Name</label>
+                    <input type="text" name="bank_name" class="form-control" required="required" placeholder="e.g. Banco Popular"/>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Transaction Reference / Code</label>
+                    <input type="text" name="reference" class="form-control" required="required"/>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Amount Paid</label>
+                    <input type="number" step="0.01" name="amount" class="form-control" required="required"/>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Date</label>
+                    <input type="date" name="date" class="form-control" required="required"/>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Proof of Payment (Screenshot/PDF)</label>
+                    <input type="file" name="attachment" class="form-control" required="required"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Select Invoices to Pay (Optional)</label>
+                    <div class="list-group">
+                        <t t-foreach="invoices" t-as="inv">
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" name="invoice_ids" t-att-value="inv.id"/>
+                                <span t-field="inv.name"/> - <span t-field="inv.amount_residual"/> <span t-field="inv.currency_id.symbol"/> (Due: <span t-field="inv.invoice_date_due"/>)
+                            </label>
+                        </t>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Payment</button>
+            </form>
         </t>
     </template>
 </odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_isp_plan_change_tree" model="ir.ui.view">
+        <field name="name">isp.plan.change.request.tree</field>
+        <field name="model">isp.plan.change.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="subscription_id"/>
+                <field name="partner_id"/>
+                <field name="current_plan_id"/>
+                <field name="requested_plan_id"/>
+                <field name="effective_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_isp_plan_change_form" model="ir.ui.view">
+        <field name="name">isp.plan.change.request.form</field>
+        <field name="model">isp.plan.change.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Submit"/>
+                    <button name="action_approve" type="object" string="Approve" groups="isp_core.group_isp_admin,isp_core.group_isp_billing"/>
+                    <button name="action_reject" type="object" string="Reject" groups="isp_core.group_isp_admin,isp_core.group_isp_billing"/>
+                    <button name="action_apply" type="object" string="Apply" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,rejected,applied"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="subscription_id"/>
+                        <field name="partner_id"/>
+                    </group>
+                    <group>
+                        <field name="current_plan_id"/>
+                        <field name="requested_plan_id"/>
+                    </group>
+                    <group>
+                        <field name="effective_date_mode"/>
+                        <field name="effective_date"/>
+                        <field name="prorate"/>
+                    </group>
+                    <group>
+                        <field name="requested_by"/>
+                        <field name="requested_at"/>
+                        <field name="approved_by"/>
+                    </group>
+                    <group>
+                        <field name="rejection_reason"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -38,3 +38,14 @@ access_isp_audit_noc,isp.audit_log noc,model_isp_audit_log,isp_core.group_isp_no
 access_isp_mac_profile_admin,isp.mac_profile admin,model_isp_mac_profile,isp_core.group_isp_admin,1,1,1,1
 access_isp_mac_profile_noc,isp.mac_profile noc,model_isp_mac_profile,isp_core.group_isp_noc,1,1,1,0
 access_isp_mac_profile_support,isp.mac_profile support,model_isp_mac_profile,isp_core.group_isp_support,1,0,0,0
+
+access_isp_plan_change_admin,isp.plan.change admin,model_isp_plan_change_request,isp_core.group_isp_admin,1,1,1,1
+access_isp_plan_change_noc,isp.plan.change noc,model_isp_plan_change_request,isp_core.group_isp_noc,1,1,1,0
+access_isp_plan_change_support,isp.plan.change support,model_isp_plan_change_request,isp_core.group_isp_support,1,1,1,0
+access_isp_plan_change_billing,isp.plan.change billing,model_isp_plan_change_request,isp_core.group_isp_billing,1,1,1,0
+
+access_isp_fault_admin,isp.fault admin,model_isp_fault_ticket,isp_core.group_isp_admin,1,1,1,1
+access_isp_fault_noc,isp.fault noc,model_isp_fault_ticket,isp_core.group_isp_noc,1,1,1,0
+access_isp_fault_support,isp.fault support,model_isp_fault_ticket,isp_core.group_isp_support,1,1,1,0
+access_isp_fault_field,isp.fault field,model_isp_fault_ticket,isp_core.group_isp_field_tech,1,1,1,0
+access_isp_fault_billing,isp.fault billing,model_isp_fault_ticket,isp_core.group_isp_billing,1,0,0,0

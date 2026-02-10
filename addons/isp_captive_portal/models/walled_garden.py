@@ -13,10 +13,10 @@ class IspCaptiveWalledGarden(models.Model):
     sector_id = fields.Many2one(related="router_id.sector_id", store=True, readonly=True)
     active = fields.Boolean(default=True)
     notes = fields.Text()
-
-    _sql_constraints = [
-        ("isp_captive_wg_uniq", "unique(domain)", "Domain must be unique."),
-    ]
+    _domain_uniq = models.Constraint(
+        "unique (domain)",
+        "Domain must be unique.",
+    )
 
     def action_apply(self):
         for rec in self:

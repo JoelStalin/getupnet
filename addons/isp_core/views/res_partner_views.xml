@@ -9,13 +9,13 @@
                 <field name="is_isp_customer"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page string="ISP" attrs="{'invisible': [('is_isp_customer', '=', False)]}">
+                <page string="ISP">
                     <field name="isp_subscription_ids">
-                        <tree>
+                        <list>
                             <field name="name"/>
                             <field name="plan_id"/>
                             <field name="state"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

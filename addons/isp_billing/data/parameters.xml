@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="param_isp_billing_transfer_review_hours" model="ir.config_parameter">
+        <field name="key">isp_billing.transfer_review_hours</field>
+        <field name="value">48</field>
+    </record>
+    <record id="param_isp_billing_transfer_attention_hours" model="ir.config_parameter">
+        <field name="key">isp_billing.transfer_attention_hours</field>
+        <field name="value">24</field>
+    </record>
+    <record id="param_isp_billing_grace_days" model="ir.config_parameter">
+        <field name="key">isp_billing.grace_days</field>
+        <field name="value">5</field>
+    </record>
+    <record id="param_isp_billing_suspend_after_days" model="ir.config_parameter">
+        <field name="key">isp_billing.suspend_after_days</field>
+        <field name="value">10</field>
+    </record>
+</odoo>

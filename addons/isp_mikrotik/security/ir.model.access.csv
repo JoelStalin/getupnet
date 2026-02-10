@@ -2,3 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_isp_mikrotik_router_admin,isp.mikrotik.router admin,model_isp_mikrotik_router,isp_core.group_isp_admin,1,1,1,1
 access_isp_mikrotik_router_noc,isp.mikrotik.router noc,model_isp_mikrotik_router,isp_core.group_isp_noc,1,1,1,0
 access_isp_mikrotik_router_support,isp.mikrotik.router support,model_isp_mikrotik_router,isp_core.group_isp_support,1,0,0,0
+access_isp_mikrotik_preconfig_admin,isp.mikrotik.preconfig admin,model_isp_mikrotik_preconfig,isp_core.group_isp_admin,1,1,1,1
+access_isp_mikrotik_preconfig_noc,isp.mikrotik.preconfig noc,model_isp_mikrotik_preconfig,isp_core.group_isp_noc,1,1,1,0
+access_isp_mikrotik_preconfig_support,isp.mikrotik.preconfig support,model_isp_mikrotik_preconfig,isp_core.group_isp_support,1,0,0,0

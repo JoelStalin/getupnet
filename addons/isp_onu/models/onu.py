@@ -8,6 +8,7 @@ class IspOnu(models.Model):
     _order = "serial"
 
     serial = fields.Char(required=True)
+    mac_address = fields.Char()
     vendor = fields.Char()
     model = fields.Char()
     sector_id = fields.Many2one("isp.sector", ondelete="set null")
@@ -19,7 +20,7 @@ class IspOnu(models.Model):
         default="stock",
     )
     notes = fields.Text()
-
-    _sql_constraints = [
-        ("isp_onu_serial_uniq", "unique(serial)", "ONU serial must be unique."),
-    ]
+    _serial_uniq = models.Constraint(
+        "unique (serial)",
+        "ONU serial must be unique.",
+    )

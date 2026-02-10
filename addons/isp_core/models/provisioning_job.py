@@ -25,6 +25,7 @@ class IspProvisioningJob(models.Model):
             ("export_config_snapshot", "Export Config Snapshot"),
         ],
         required=True,
+        ondelete="cascade",
     )
     subscription_id = fields.Many2one("isp.subscription", ondelete="set null")
     device_id = fields.Many2one("isp.device", ondelete="set null")

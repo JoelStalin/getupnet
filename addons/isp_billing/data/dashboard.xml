@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="isp_dashboard_record" model="isp.dashboard">
+        <field name="name">ISP Dashboard</field>
+    </record>
+</odoo>

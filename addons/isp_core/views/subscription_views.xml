@@ -4,13 +4,15 @@
         <field name="name">isp.subscription.tree</field>
         <field name="model">isp.subscription</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="plan_id"/>
                 <field name="sector_id"/>
+                <field name="auth_method"/>
+                <field name="service_ip"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -20,11 +22,12 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_activate" type="object" string="Activate" states="draft"/>
-                    <button name="action_suspend" type="object" string="Suspend" states="active"/>
-                    <button name="action_reconnect" type="object" string="Reconnect" states="suspended"/>
-                    <button name="action_terminate" type="object" string="Terminate" states="draft,active,suspended"/>
-                    <button name="action_change_plan" type="object" string="Change Plan" states="active,suspended"/>
+                    <button name="action_activate" type="object" string="Activate"/>
+                    <button name="action_suspend" type="object" string="Suspend"/>
+                    <button name="action_reconnect" type="object" string="Reconnect"/>
+                    <button name="action_terminate" type="object" string="Terminate"/>
+                    <button name="action_change_plan" type="object" string="Change Plan"/>
+                    <button name="action_request_plan_change" type="object" string="Request Plan Change"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,suspended,terminated"/>
                 </header>
                 <sheet>
@@ -34,27 +37,68 @@
                         <field name="plan_id"/>
                         <field name="sector_id"/>
                         <field name="start_date"/>
+                        <field name="install_date"/>
+                    </group>
+                    <group>
+                        <field name="auth_method"/>
+                        <field name="dhcp_mode"/>
+                        <field name="service_ip"/>
+                        <field name="service_mac"/>
+                        <field name="pppoe_username" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                        <field name="pppoe_password" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                        <field name="pppoe_profile"/>
+                    </group>
+                    <group>
+                        <field name="gps_lat" groups="isp_core.group_isp_admin,isp_core.group_isp_field_tech"/>
+                        <field name="gps_lng" groups="isp_core.group_isp_admin,isp_core.group_isp_field_tech"/>
+                        <field name="address_text"/>
+                        <field name="pop_id"/>
+                        <field name="device_id" domain="[('device_type','=','mikrotik')]"/>
+                        <field name="technician_id"/>
                     </group>
                     <notebook>
-                        <page string="Network">
+                        <page name="network" string="Network">
                             <group>
+                                <field name="auth_method"/>
+                                <field name="dhcp_mode"/>
                                 <field name="service_ip"/>
                                 <field name="service_mac"/>
                                 <field name="pppoe_username" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
                                 <field name="pppoe_password" groups="isp_core.group_isp_admin,isp_core.group_isp_noc"/>
+                                <field name="pppoe_profile"/>
                             </group>
                         </page>
-                        <page string="Notes">
+                        <page name="plan_changes" string="Plan Changes">
+                            <field name="plan_change_request_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="requested_plan_id"/>
+                                    <field name="effective_date"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="faults" string="Fault Tickets">
+                            <field name="fault_ticket_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="fault_type"/>
+                                    <field name="priority"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="notes" string="Notes">
                             <field name="notes"/>
                         </page>
-                        <page string="Jobs">
+                        <page name="jobs" string="Jobs">
                             <field name="job_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="job_type"/>
                                     <field name="state"/>
                                     <field name="requested_at"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
